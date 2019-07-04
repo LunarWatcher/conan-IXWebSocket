@@ -21,10 +21,11 @@ public:
                 } else if (message->type == ix::WebSocketMessageType::Close) {
                     std::cout << "Closing socket...\n";
                 } else if (message->type == ix::WebSocketMessageType::Message) {
-                    std::cout << message->str << std::endl;
+                    std::cout << "Message received from server: " << message->str << std::endl;
                     receivedMessages.push_back(message->str);
                 } else if (message->type == ix::WebSocketMessageType::Error) {
                     std::cout << message->errorInfo.reason;
+                    receivedMessages.push_back("Fail");
                 } 
             });
         webSocket.start();
@@ -43,7 +44,7 @@ int main() {
     std::cout << "Starting socket..." << std::endl;
     SocketWrapper socketWrapper;
     while(!socketWrapper.hasReceived()) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         if (socketWrapper.ready()) {
             socketWrapper.send("Congrats, your local version of IXWebSocket works!");
         }
