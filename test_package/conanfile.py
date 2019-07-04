@@ -3,7 +3,7 @@ import os
 from conans import ConanFile, CMake, tools
 
 
-class IxwebsocketTestConan(ConanFile):
+class IXWebSocketTestConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake"
 

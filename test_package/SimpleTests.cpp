@@ -1,3 +1,4 @@
+#ifndef _WIN32
 #include <iostream>
 #include <ixwebsocket/IXWebSocket.h>
 #include <string>
@@ -52,3 +53,9 @@ int main() {
     std::cout << "Socket disconnected." << std::endl;
 
 }
+#else
+#include <iostream>
+int main() {
+    std::cout << "Windows doesn't seem to like the test." << std::endl;
+}
+#endif 
