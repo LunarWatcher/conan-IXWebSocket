@@ -51,9 +51,12 @@ class IXWebSocketConan(ConanFile):
         extracted_dir = self.name + "-" + self.version
         os.rename(extracted_dir, "sources")
 
-    def addLibrary(self, keyBase, includeName, opts):
+    def addLibrary(self, keyBase, includeName, opts, plural = False):
         opts[keyBase + "_LIBRARY"] = self.deps_cpp_info[includeName].rootpath
-        opts[keyBase + "_INCLUDE_DIRS"] = os.path.join(self.deps_cpp_info[includeName].rootpath, self.deps_cpp_info[includeName].includedirs[0])
+        includePath = keyBase + "_INCLUDE_DIR"
+        if plural == True:
+            includePath += "S"
+        opts[includePath] = os.path.join(self.deps_cpp_info[includeName].rootpath, self.deps_cpp_info[includeName].includedirs[0])
 
     def configure_cmake(self):
         cmake = CMake(self)
@@ -70,9 +73,9 @@ class IXWebSocketConan(ConanFile):
         self.addLibrary("ZLIB", "zlib", opts)
         print(self.deps_cpp_info.deps)
         if not self.options.use_vendored_third_party and (self.options.use_mbed_tls or self.options.use_tls and self.settings.os == "Windows"):
-            self.addLibrary("MBEDTLS", "mbedtls", opts)
-            self.addLibrary("MBEDCRYPTO", "mbedtls", opts)
-            self.addLibrary("MBEDX509", "mbedtls", opts)
+            self.addLibrary("MBEDTLS", "mbedtls", opts, True)
+            self.addLibrary("MBEDCRYPTO", "mbedtls", opts, True)
+            self.addLibrary("MBEDX509", "mbedtls", opts, True)
         cmake.configure(defs=opts, source_folder="sources", build_folder="build")
         return cmake
 
