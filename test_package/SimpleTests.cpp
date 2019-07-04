@@ -1,10 +1,10 @@
-#ifndef _WIN32
 #include <iostream>
 #include <ixwebsocket/IXWebSocket.h>
 #include <string>
 #include <vector>
 #include <chrono>
 #include <thread>
+#include <ixwebsocket/IXNetSystem.h>
 
 class SocketWrapper {
 private:
@@ -24,8 +24,7 @@ public:
                     std::cout << "Message received from server: " << message->str << std::endl;
                     receivedMessages.push_back(message->str);
                 } else if (message->type == ix::WebSocketMessageType::Error) {
-                    std::cout << message->errorInfo.reason;
-                    receivedMessages.push_back("Fail");
+                    std::cout << "ERROR:" << message->errorInfo.reason;
                 } 
             });
         webSocket.start();
@@ -42,9 +41,11 @@ public:
 
 int main() {
     std::cout << "Starting socket..." << std::endl;
+    ix::initNetSystem(); // required for Windows
     SocketWrapper socketWrapper;
-    while(!socketWrapper.hasReceived()) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    while(true) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+        if (socketWrapper.hasReceived()) break;
         if (socketWrapper.ready()) {
             socketWrapper.send("Congrats, your local version of IXWebSocket works!");
         }
@@ -53,10 +54,6 @@ int main() {
     socketWrapper.close();
     std::cout << "Socket disconnected." << std::endl;
 
+    ix::uninitNetSystem(); // required for Windows.
 }
-#else
-#include <iostream>
-int main() {
-    std::cout << "Windows doesn't seem to like the test." << std::endl;
-}
-#endif 
+
