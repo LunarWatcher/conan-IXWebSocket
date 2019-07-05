@@ -12,6 +12,8 @@ conan create . LunarWatcher/stable --build missing
 
 Uploading to Conan Center is planned in the future. 
 
+Either way, to add it to your project, you need to make sure your Conan profile setting `settings.compiler.libcxx` is set to `libstdc++11`. If it's set to `libstdc++`, the build may fail with undefined references to IXWebSocket. 
+
 # Options 
 
 * `use_mbed_tls` - whether or not to use MbedTLS. By default, this is false to allow platform-specific SSL providers (Both Mac and UNIX supports MbedTLS, but they fall back to platform-specific providers). **NOTE:** Windows uses MbedTLS regardless of this option. 

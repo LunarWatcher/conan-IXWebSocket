@@ -71,7 +71,6 @@ class IXWebSocketConan(ConanFile):
         if (self.options.use_tls and not self.options.use_mbed_tls and not self.settings.os == "Windows" and not self.settings.os == "Macos"):
             os.environ['OPENSSL_ROOT_DIR'] = self.deps_cpp_info["OpenSSL"].rootpath
         self.addLibrary("ZLIB", "zlib", opts)
-        print(self.deps_cpp_info.deps)
         if not self.options.use_vendored_third_party and (self.options.use_mbed_tls or self.options.use_tls and self.settings.os == "Windows"):
             self.addLibrary("MBEDTLS", "mbedtls", opts, True)
             self.addLibrary("MBEDCRYPTO", "mbedtls", opts, True)
@@ -98,6 +97,19 @@ class IXWebSocketConan(ConanFile):
         if self.options.use_tls and self.settings.os == "Windows":
             # Include linking with the websocket 
             self.cpp_info.libs += ["Ws2_32"]
+        if self.options.use_tls and (self.options.use_mbed_tls and self.options.use_vendored_third_party or self.settings.os == "Windows"):
+            # This doesn't really affect MSVC builds, but it might if the compiler changes in the future. 
+            if "mbedtls" not in self.cpp_info.libs: 
+                self.cpp_info.libs += ["mbedtls", "mbedx509", "mbedcrypto"]
+            else:
+                pIdx = self.cpp_info.libs.index("mbedtls") 
+                cIdx = self.cpp_info.libs.index("mbedcrypto")
+                xIdx = self.cpp_info.libs.index("mbedx509")
+                # Linking order matters on some compilers. Aside MSVC, Clang and GCC, and potentially others, require the linking
+                # order of -lmbedtls -l mbedx509 -lmbedcrypto, as outlined in the README for mbedTLS.
+                # See also: https://stackoverflow.com/a/17741992/6296561
+                if (cIdx > pIdx or xIdx > pIdx or cIdx > xIdx):
+                    self.cpp_info.libs = [x for x in self.cpp_info.libs if "mbed" not in x] + [ "mbedtls", "mbedx509", "mbedcrypto"]
 
         if self.settings.os == "Linux":
             self.cpp_info.libs.append("pthread")
