@@ -8,7 +8,7 @@ matrix:
               sources:
                   - ubuntu-toolchain-r-test
               packages:
-                  - g++-4.9
+                  - gcc-4.9
           env:
               - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
         - os: linux
@@ -17,7 +17,7 @@ matrix:
               sources:
                   - ubuntu-toolchain-r-test
               packages:
-                  - g++-5.0
+                  - gcc-5.0
           env:
               - MATRIX_EVAL="CC=gcc-5.0 && CXX=g++-5.0"
         - os: linux
@@ -26,7 +26,7 @@ matrix:
               sources:
                   - ubuntu-toolchain-r-test
               packages:
-                  - g++-6.0
+                  - gcc-6.0
           env:
               - MATRIX_EVAL="CC=gcc-6.0 && CXX=g++-6.0"
         - os: linux
@@ -35,7 +35,7 @@ matrix:
               sources:
                   - ubuntu-toolchain-r-test
               packages:
-                  - g++-7.0
+                  - gcc-7.0
           env:
               - MATRIX_EVAL="CC=gcc-7.0 && CXX=g++-7.0"
         - os: linux
@@ -44,7 +44,7 @@ matrix:
               sources:
                   - ubuntu-toolchain-r-test
               packages:
-                  - g++-8.0
+                  - gcc-8.0
           env:
               - MATRIX_EVAL="CC=gcc-8.0 && CXX=g++-8.0"
         - os: linux
@@ -58,6 +58,7 @@ matrix:
           env:
               - MATRIX_EVAL="CC=clang-3.9 && CXX=clang-3.9"
         - os: linux
+          dist: xenial
           addons:
             apt:
               sources:
@@ -66,8 +67,9 @@ matrix:
               packages:
                   - clang-4.0
           env:
-              - MATRIX_EVAL="CC=clang-4.0 && CXX=clang-3.0"
+              - MATRIX_EVAL="CC=clang-4.0 && CXX=clang-4.0"
         - os: linux
+          dist: xenial
           addons:
             apt:
               sources:
@@ -78,6 +80,7 @@ matrix:
           env:
               - MATRIX_EVAL="CC=clang-5.0 && CXX=clang-5.0"
         - os: linux
+          dist: xenial
           addons:
             apt:
               sources:
@@ -88,25 +91,13 @@ matrix:
           env:
               - MATRIX_EVAL="CC=clang-6.0 && CXX=clang-6.0"
         - os: linux
+          dist: xenial
           addons:
             apt:
               sources:
                   - ubuntu-toolchain-r-test
-                  - llvm-toolchain-xenial-7.0
-              packages:
-                  - clang-7.0
           env:
               - MATRIX_EVAL="CC=clang-7.0 && CXX=clang-7.0"
-        - os: linux
-          addons:
-            apt:
-              sources:
-                  - ubuntu-toolchain-r-test
-                  - llvm-toolchain-xenial-8.0
-              packages:
-                  - clang-8.0
-          env:
-              - MATRIX_EVAL="CC=clang-8.0 && CXX=clang-8.0"
         - os: macos
           osx_image: xcode7.3
         - os: macos
