@@ -17,7 +17,7 @@ matrix:
               sources:
                   - ubuntu-toolchain-r-test
               packages:
-                  - gcc-5.0
+                  - gcc-5
           env:
               - MATRIX_EVAL="CC=gcc-5.0 && CXX=g++-5.0"
         - os: linux
@@ -26,7 +26,7 @@ matrix:
               sources:
                   - ubuntu-toolchain-r-test
               packages:
-                  - gcc-6.0
+                  - gcc-6
           env:
               - MATRIX_EVAL="CC=gcc-6.0 && CXX=g++-6.0"
         - os: linux
@@ -35,7 +35,7 @@ matrix:
               sources:
                   - ubuntu-toolchain-r-test
               packages:
-                  - gcc-7.0
+                  - gcc-7
           env:
               - MATRIX_EVAL="CC=gcc-7.0 && CXX=g++-7.0"
         - os: linux
@@ -44,7 +44,7 @@ matrix:
               sources:
                   - ubuntu-toolchain-r-test
               packages:
-                  - gcc-8.0
+                  - gcc-8
           env:
               - MATRIX_EVAL="CC=gcc-8.0 && CXX=g++-8.0"
         - os: linux
