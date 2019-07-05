@@ -1,12 +1,10 @@
 build: false
-platform: x86
 
 environment:
     PYTHON: "c:\\Python37"
     PYTHON_VERSION: "3.7.3"
     PYTHON_ARCH: "32"
-
-    
+        
     matrix:
         - MINGW_CONFIGURATIONS: "4.9@x86_64@seh@posix"
         - MINGW_CONFIGURATIONS: "4.9@x86_64@sjlj@posix"
@@ -31,8 +29,9 @@ environment:
 
 install:
     - set PATH=%PATH%;%PYTHON%/Scripts
-    - pip.exe install conan
+    - pip.exe install conan --upgrade
+    - pip.exe install conan_package_tools
     - conan user
 
 test_script:
-    - conan create . LunarWatcher/testing --build missing
+    - python build.py
