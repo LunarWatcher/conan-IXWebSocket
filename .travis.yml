@@ -60,6 +60,7 @@ matrix:
 
 install:
     - python --version
+    - pip install conan_package_tools
     - pip install conan
     - conan user
     - conan profile new --detect default
