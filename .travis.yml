@@ -62,6 +62,7 @@ install:
     - python --version
     - pip install conan
     - conan user
+    - conan profile new --detect default
     - conan profile update settings.options.libcxx=libstdc++11 default
 
 script:
