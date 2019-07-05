@@ -107,7 +107,7 @@ matrix:
                   - ubuntu-toolchain-r-test
           env:
               - CC=clang-7.0 
-              - CXX=clang-7.0
+              - CXX=clang++-7.0
         - os: macos
           osx_image: xcode7.3
           env:
@@ -134,5 +134,7 @@ matrix:
 install:
     - pip3 install conan --upgrade 
     - conan user
+    - conan profile create --detect default 
+    - conan profile update settings.compiler.libcxx=libstdc++11 default
 script:
     - conan create . LunarWatcher/testing --build missing
