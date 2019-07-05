@@ -1,3 +1,11 @@
+env:
+    global:
+        - CONAN_USERNAME: "OliviaZoe0"
+        - CONAN_LOGIN_USERNAME: "conanbot"
+        - CONAN_CHANNEL: "testing"
+        - CONAN_UPLOAD: "https://bintray.com/oliviazoe0/conan-packages"
+        - CONAN_STABLE_BRANCH_PATTERN: "release/*"
+        - CONAN_UPLOAD_ONLY_WHEN_STABLE: 1
 linux: &linux
     os: linux
     dist: xenial
