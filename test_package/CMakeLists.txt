@@ -8,12 +8,8 @@ conan_basic_setup()
 
 add_executable(tests SimpleTests.cpp)
 
-if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
-    # Build with Multiple Processes
-    target_compile_options(ixwebsocket PRIVATE /MP)
-else
-    set($CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-endif()
+set($CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
 
 target_link_libraries(tests ${CONAN_LIBS})
 
