@@ -134,7 +134,7 @@ matrix:
 install:
     - pip3 install conan --upgrade 
     - conan user
-    - conan profile create --detect default 
+    - conan profile new --detect default 
     - conan profile update settings.compiler.libcxx=libstdc++11 default
 script:
     - conan create . LunarWatcher/testing --build missing
