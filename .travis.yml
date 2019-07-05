@@ -1,3 +1,7 @@
+env:
+    global:
+        - CONAN_DOCKER_32_IMAGES: 1
+
 linux: &linux
     os: linux
     dist: xenial
@@ -7,7 +11,8 @@ linux: &linux
         - docker
 osx: &osx
     os: osx
-    language: generic
+    language: python
+    python: "3.7"
 
 matrix:
    include:
@@ -54,8 +59,10 @@ matrix:
         env: CONAN_APPLE_CLANG_VERSIONS=10.0
 
 install:
+    - python --version
     - pip install conan
     - conan user
+    - conan profile update settings.options.libcxx=libstdc++11 default
 
 script:
     conan create . LunarWatcher/testing --build missing
