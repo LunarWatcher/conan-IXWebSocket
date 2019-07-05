@@ -1,6 +1,6 @@
 matrix:
     include:
-        - os: linux:
+        - os: linux
           addons:
             apt:
               sources:
@@ -9,7 +9,7 @@ matrix:
                   - g++-4.9
           env:
               - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
-        - os: linux:
+        - os: linux
           addons:
             apt:
               sources:
@@ -18,7 +18,7 @@ matrix:
                   - g++-5.4
           env:
               - MATRIX_EVAL="CC=gcc-5.4 && CXX=g++-5.4"
-        - os: linux:
+        - os: linux
           addons:
             apt:
               sources:
@@ -27,7 +27,7 @@ matrix:
                   - g++-6.3
           env:
               - MATRIX_EVAL="CC=gcc-6.3 && CXX=g++-6.3"
-        - os: linux:
+        - os: linux
           addons:
             apt:
               sources:
@@ -36,7 +36,7 @@ matrix:
                   - g++-7.4
           env:
               - MATRIX_EVAL="CC=gcc-7.4 && CXX=g++-7.4"
-        - os: linux:
+        - os: linux
           addons:
             apt:
               sources:
@@ -45,7 +45,7 @@ matrix:
                   - g++-8.3
           env:
               - MATRIX_EVAL="CC=gcc-8.3 && CXX=g++-8.3"
-        - os: linux:
+        - os: linux
           addons:
             apt:
               sources:
@@ -55,7 +55,7 @@ matrix:
                   - clang-3.9
           env:
               - MATRIX_EVAL="CC=clang-3.9 && CXX=clang-3.9"
-        - os: linux:
+        - os: linux
           addons:
             apt:
               sources:
@@ -65,7 +65,7 @@ matrix:
                   - clang-3.0
           env:
               - MATRIX_EVAL="CC=clang-4.0 && CXX=clang-3.0"
-        - os: linux:
+        - os: linux
           addons:
             apt:
               sources:
@@ -75,7 +75,7 @@ matrix:
                   - clang-3.9
           env:
               - MATRIX_EVAL="CC=clang-5.0 && CXX=clang-5.0"
-        - os: linux:
+        - os: linux
           addons:
             apt:
               sources:
@@ -85,7 +85,7 @@ matrix:
                   - clang-3.9
           env:
               - MATRIX_EVAL="CC=clang-6.0 && CXX=clang-6.0"
-        - os: linux:
+        - os: linux
           addons:
             apt:
               sources:
@@ -95,7 +95,7 @@ matrix:
                   - clang-3.9
           env:
               - MATRIX_EVAL="CC=clang-7.0 && CXX=clang-7.0"
-        - os: linux:
+        - os: linux
           addons:
             apt:
               sources:
@@ -105,13 +105,13 @@ matrix:
                   - clang-3.9
           env:
               - MATRIX_EVAL="CC=clang-8.0 && CXX=clang-8.0"
-        - os: macos:
+        - os: macos
           osx_image: xcode7.3
-        - os: macos:
+        - os: macos
           osx_image: xcode8.1
-        - os: macos:
+        - os: macos
           osx_image: xcode9.1
-        - os: macos:
+        - os: macos
           osx_image: xcode10.0
 
 install:
