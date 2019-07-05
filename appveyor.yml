@@ -1,0 +1,15 @@
+build: false
+platform: x86
+
+environment:
+    PYTHON: "c:\\Python37"
+    PYTHON_VERSION: "3.7.3"
+    PYTHON_ARCH: "32"
+
+install:
+    - set PATH=%PATH%;%PYTHON%/Scripts
+    - pip.exe install conan
+    - conan user
+
+test_script:
+    - conan create . LunarWatcher/testing --build missing

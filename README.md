@@ -1,5 +1,14 @@
 [Conan](//conan.io) package for [machinezone/IXWebSocket](https://github.com/machinezone/IXWebSocket).
 
+# Build status
+
+---
+| Windows| Linux/OSX |
+| [![Build status](https://ci.appveyor.com/api/projects/status/eaa6oevawbihu90i?svg=true)](https://ci.appveyor.com/project/LunarWatcher/conan-ixwebsocket) | [![Build Status](https://travis-ci.org/LunarWatcher/conan-IXWebSocket.svg?branch=master)](https://travis-ci.org/LunarWatcher/conan-IXWebSocket) |
+|--- | --- |
+
+---
+
 # Installing manually 
 
 You can install the project locally by typing:

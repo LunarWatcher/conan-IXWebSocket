@@ -84,6 +84,10 @@ class IXWebSocketConan(ConanFile):
         cmake.install()
 
     def package(self):
+        # Include package license 
+        self.copy("LICENSE.txt", dst="licenses", src="sources")
+
+        # Include binaries and headers
         self.copy("*.h", dst="include", src="include")
         self.copy("*.lib", dst="lib", keep_path=False)
         self.copy("*.dll", dst="bin", keep_path=False)
