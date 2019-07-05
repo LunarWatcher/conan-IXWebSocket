@@ -6,6 +6,8 @@ env:
         - CONAN_UPLOAD: "https://bintray.com/oliviazoe0/conan-packages"
         - CONAN_STABLE_BRANCH_PATTERN: "release/*"
         - CONAN_UPLOAD_ONLY_WHEN_STABLE: 1
+        - CONAN_UPLOAD_DEPENDENCIES: "all"
+
 linux: &linux
     os: linux
     dist: xenial
