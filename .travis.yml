@@ -1,132 +1,74 @@
-language: python
-python: "3.6.3"
+env:
+    global:
+        - CONAN_USERNAME: "OliviaZoe0"
+        - CONAN_LOGIN_USERNAME: "conanbot"
+        - CONAN_CHANNEL: "testing"
+        - CONAN_UPLOAD: "https://bintray.com/oliviazoe0/conan-packages"
+        - CONAN_STABLE_BRANCH_PATTERN: "release/*"
+        - CONAN_UPLOAD_ONLY_WHEN_STABLE: 1
+        - CONAN_UPLOAD_DEPENDENCIES: "all"
+
+linux: &linux
+    os: linux
+    dist: xenial
+    language: python
+    python: "3.7"
+    services: 
+        - docker
+osx: &osx
+    os: osx
+    language: generic
+
 matrix:
-    include:
-        - os: linux
-          addons:
-            apt:
-              sources:
-                  - ubuntu-toolchain-r-test
-              packages:
-                  - gcc-4.9
-          env:
-              - CC=gcc-4.9
-              - CXX=g++-4.9
-        - os: linux
-          addons:
-            apt:
-              sources:
-                  - ubuntu-toolchain-r-test
-              packages:
-                  - gcc-5
-          env:
-              - CC=gcc-5
-              - CXX=g++-5
-        - os: linux
-          addons:
-            apt:
-              sources:
-                  - ubuntu-toolchain-r-test
-              packages:
-                  - gcc-6
-          env:
-              - CC=gcc-6
-              - CXX=g++-6
-        - os: linux
-          addons:
-            apt:
-              sources:
-                  - ubuntu-toolchain-r-test
-              packages:
-                  - gcc-7
-          env:
-              - CC=gcc-7
-              - CXX=g++-7
-        - os: linux
-          addons:
-            apt:
-              sources:
-                  - ubuntu-toolchain-r-test
-              packages:
-                  - gcc-8
-          env:
-              - CC=gcc-8
-              - CXX=g++-8
-        - os: linux
-          addons:
-            apt:
-              sources:
-                  - ubuntu-toolchain-r-test
-                  - llvm-toolchain-xenial-3.9
-              packages:
-                  - clang-3.9
-          env:
-              - CC=clang-3.9
-              - CXX=clang++-3.9
-        - os: linux
-          dist: xenial
-          addons:
-            apt:
-              sources:
-                  - ubuntu-toolchain-r-test
-                  - llvm-toolchain-xenial-4.0
-              packages:
-                  - clang-4.0
-          env:
-              - CC=clang-4.0
-              - CXX=clang++-4.0
-        - os: linux
-          dist: xenial
-          addons:
-            apt:
-              sources:
-                  - ubuntu-toolchain-r-test
-                  - llvm-toolchain-xenial-5.0
-              packages:
-                  - clang-5.0
-          env:
-              - CC=clang-5.0
-              - CXX=clang++-5.0
-        - os: linux
-          dist: xenial
-          addons:
-            apt:
-              sources:
-                  - ubuntu-toolchain-r-test
-                  - llvm-toolchain-xenial-6.0
-              packages:
-                  - clang-6.0
-          env:
-              - CC=clang-6.0
-              - CXX=clang++-6.0
-        - os: macos
-          osx_image: xcode7.3
-          env:
-            - CXX: clang++
-            - CC: clang
-        - os: macos
-          osx_image: xcode8.1
-          env:
-            - CXX: clang++
-            - CC: clang
+   include:
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=4.8 CONAN_DOCKER_IMAGE=conanio/gcc48 CONAN_ARCHS=x86_64
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=4.9 CONAN_DOCKER_IMAGE=conanio/gcc49
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=conanio/gcc5
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=conanio/gcc6
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=conanio/gcc7
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc8
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=conanio/gcc9
+      - <<: *linux
+        env: CONAN_CLANG_VERSIONS=3.9 CONAN_DOCKER_IMAGE=conanio/clang39
+      - <<: *linux
+        env: CONAN_CLANG_VERSIONS=4.0 CONAN_DOCKER_IMAGE=conanio/clang40
+      - <<: *linux
+        env: CONAN_CLANG_VERSIONS=5.0 CONAN_DOCKER_IMAGE=conanio/clang50 
+      - <<: *linux
+        env: CONAN_CLANG_VERSIONS=6.0 CONAN_DOCKER_IMAGE=conanio/clang60 
+      - <<: *linux
+        env: CONAN_CLANG_VERSIONS=7.0 CONAN_DOCKER_IMAGE=conanio/clang7 
+      - <<: *linux
+        env: CONAN_CLANG_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/clang8 
+      - <<: *osx
+        osx_image: xcode7.3
+        env: CONAN_APPLE_CLANG_VERSIONS=7.3
+      - <<: *osx
+        osx_image: xcode8.3
+        env: CONAN_APPLE_CLANG_VERSIONS=8.1
+      - <<: *osx
+        osx_image: xcode9
+        env: CONAN_APPLE_CLANG_VERSIONS=9.0
+      - <<: *osx
+        osx_image: xcode9.4
+        env: CONAN_APPLE_CLANG_VERSIONS=9.1
+      - <<: *osx
+        osx_image: xcode10
+        env: CONAN_APPLE_CLANG_VERSIONS=10.0
 
-        - os: macos
-          osx_image: xcode9.1
-          env:
-            - CXX: clang++
-            - CC: clang
-
-        - os: macos
-          osx_image: xcode10.0
-          env:
-            - CXX: clang++
-            - CC: clang
 
 install:
-    - pip3 install conan --upgrade 
-    - conan user
-    - conan profile new --detect default 
-    - conan profile update settings.compiler.libcxx=libstdc++11 default
-    - conan profile show default
+  - chmod +x .travis/install.sh
+  - ./.travis/install.sh
+
 script:
-    - conan create . LunarWatcher/testing --build missing
+  - chmod +x .travis/run.sh
+  - ./.travis/run.sh
+

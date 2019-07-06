@@ -4,6 +4,14 @@ environment:
     PYTHON: "c:\\Python37"
     PYTHON_VERSION: "3.7.3"
     PYTHON_ARCH: "32"
+
+    CONAN_USERNAME: "OliviaZoe0"
+    CONAN_LOGIN_USERNAME: "OliviaZoe0"
+    CONAN_CHANNEL: "testing"
+    CONAN_UPLOAD: "https://bintray.com/oliviazoe0/conan-packages"
+    CONAN_STABLE_BRANCH_PATTERN: "release/*"
+    CONAN_UPLOAD_ONLY_WHEN_STABLE: 1
+
     matrix:
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
           CONAN_VISUAL_VERSIONS: 12
@@ -17,7 +25,8 @@ environment:
 install:
     - set PATH=%PATH%;%PYTHON%/Scripts
     - pip.exe install conan --upgrade
+    - pip.exe install conan_package_tools
     - conan user
 
 test_script:
-    - conan create . LunarWatcher/testing --build missing 
+    - python build.py
