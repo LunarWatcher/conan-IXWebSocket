@@ -6,8 +6,8 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
         eval "$(pyenv init -)"
     fi
     pyenv activate conan
-    export CXX=clang++-$CONAN_APPLE_CLANG_VERSIONS
-    export CC=clang-$CONAN_APPLE_CLANG_VERSIONS
+    export CXX=clang++
+    export CC=clang
 
     conan create . LunarWatcher/testing --build missing
 else 
@@ -20,7 +20,7 @@ else
         export CXX=gcc-$CONAN_GCC_VERSIONS
     fi
 
-    docker run -d -p 127.0.0.1:80:4567 -v $PWD:/conan-IXWebSocket $CONAN_DOCKER_IMAGE /bin/sh -c "cd conan-IXWebSocket; conan create . LunarWatcher/testing --build missing"
+    docker run -v $PWD:/conan-IXWebSocket $CONAN_DOCKER_IMAGE /bin/sh -c "cd conan-IXWebSocket; conan create . LunarWatcher/testing --build missing"
 fi
 
 
