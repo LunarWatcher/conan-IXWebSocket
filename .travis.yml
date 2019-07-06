@@ -1,3 +1,8 @@
+env:
+    global:
+        - CONAN_UPLOAD: "https://api.bintray.com/conan/oliviazoe0/conan-packages"
+        - CONAN_REFERENCE: "OliviaZoe0"
+
 linux: &linux
     os: linux
     dist: xenial

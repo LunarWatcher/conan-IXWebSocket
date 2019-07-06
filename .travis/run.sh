@@ -1,6 +1,7 @@
 set -e
 set -x 
 
+
 if [[ "$(uname -s)" == 'Darwin' ]]; then
     if which pyenv > /dev/null; then
         eval "$(pyenv init -)"
@@ -10,8 +11,8 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     export CC=clang
     conan profile new --detect default
     conan profile update settings.arch=x86 default
-    conan profile update settings.arch_build=x86
-    conan create . LunarWatcher/testing --build missing
+    conan profile update settings.arch_build=x86 default
+    ./shared.sh    
 else 
 
     if [ $CONAN_CLANG_VERSIONS ]; then
@@ -22,7 +23,10 @@ else
         export CXX=gcc-$CONAN_GCC_VERSIONS
     fi
 
-    docker run -v $PWD:/conan-IXWebSocket $CONAN_DOCKER_IMAGE /bin/sh -c "cd /conan-IXWebSocket; conan profile new --detect default; conan profile update settings.compiler.libcxx=libstdc++11 default; conan create . LunarWatcher/testing --build missing"
+    docker run -v $PWD:/conan-IXWebSocket $CONAN_DOCKER_IMAGE /bin/sh -c "cd /conan-IXWebSocket; \
+        conan profile new --detect default; \
+        conan profile update settings.compiler.libcxx=libstdc++11 default; \
+        ./shared.sh"
 fi
 
 
