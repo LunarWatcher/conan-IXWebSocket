@@ -20,7 +20,7 @@ else
         export CXX=gcc-$CONAN_GCC_VERSIONS
     fi
 
-    docker run -v $PWD:/conan-IXWebSocket $CONAN_DOCKER_IMAGE /bin/sh -c "cd /conan-IXWebSocket; conan create . LunarWatcher/testing --build missing"
+    docker run -v $PWD:/conan-IXWebSocket $CONAN_DOCKER_IMAGE /bin/sh -c "cd /conan-IXWebSocket; conan profile new --detect default; conan profile update settings.compiler.libcxx=libstdc++11 default; conan create . LunarWatcher/testing --build missing"
 fi
 
 
