@@ -8,7 +8,9 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     pyenv activate conan
     export CXX=clang++
     export CC=clang
-
+    conan profile create --detect default
+    conan profile update settings.arch=x86 default
+    conan profile update settings.arch_build=x86
     conan create . LunarWatcher/testing --build missing
 else 
 
