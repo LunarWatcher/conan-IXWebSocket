@@ -12,7 +12,7 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     conan create . LunarWatcher/testing --build missing
 else 
 
-    if [ $CONAN_CLANG_VERSIONS ]
+    if [ $CONAN_CLANG_VERSIONS ]; then
         export CXX=clang++-$CONAN_CLANG_VERSIONS
         export CC=clang-$CONAN_CLANG_VERSIONS
     else 
