@@ -12,7 +12,7 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     conan profile new --detect default
     conan profile update settings.arch=x86 default
     conan profile update settings.arch_build=x86 default
-    ./shared.sh    
+    ./.travis/shared.sh    
 else 
 
     if [ $CONAN_CLANG_VERSIONS ]; then
@@ -26,7 +26,7 @@ else
     docker run -v $PWD:/conan-IXWebSocket $CONAN_DOCKER_IMAGE /bin/sh -c "cd /conan-IXWebSocket; \
         conan profile new --detect default; \
         conan profile update settings.compiler.libcxx=libstdc++11 default; \
-        ./shared.sh"
+        ./.travis/shared.sh"
 fi
 
 
