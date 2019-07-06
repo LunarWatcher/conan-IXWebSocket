@@ -2,7 +2,8 @@ branch="$(git name-rev --name-only HEAD)"
 echo "Currently on branch $branch"
 
 if [ $branch == *"release/"* ]; then
-    conan create . LunarWatcher/stable --build missing 
+    
+    conan create . LunarWatcher/stable --build missing $([ "${IX_OPTIONS}" ] && echo "${IX_OPTIONS}" || echo "")
     result = $?
     # If the build succeeded, and we're on a release branch, upload to Bintray!
     if [ $result == 0  ]; then
@@ -14,6 +15,6 @@ if [ $branch == *"release/"* ]; then
         fi
     fi
 else 
-    conan create . LunarWatcher/testing --build missing 
+    conan create . LunarWatcher/testing --build missing $([ "${IX_OPTIONS}" ] && echo "${IX_OPTIONS}" || echo "") 
     # Test build - no upload
 fi
