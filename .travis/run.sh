@@ -12,8 +12,6 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     export IX_OPTIONS="-o IXWebSocket:use_mbed_tls=True"
     
     conan profile new --detect default
-    conan profile update settings.arch=x86 default
-    conan profile update settings.arch_build=x86 default
     ./.travis/shared.sh    
 else 
 
