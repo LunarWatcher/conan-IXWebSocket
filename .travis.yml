@@ -63,5 +63,6 @@ install:
 
 script:
   - chmod +x .travis/run.sh
+  - chmod +x ./.travis/shared.sh
   - ./.travis/run.sh
 
