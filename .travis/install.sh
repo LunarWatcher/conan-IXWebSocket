@@ -22,7 +22,6 @@ else
     docker pull $CONAN_DOCKER_IMAGE 
 fi
 
-pip install conan_package_tools
 pip install conan --upgrade
 
 # Initializes the profile
