@@ -12,6 +12,7 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     conan profile new --detect default
     conan profile update settings.arch=x86 default
     conan profile update settings.arch_build=x86 default
+    conan profile update settings.compiler.libcxx=libstdc++ default
     ./.travis/shared.sh    
 else 
 
