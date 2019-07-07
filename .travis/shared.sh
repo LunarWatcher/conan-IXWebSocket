@@ -8,7 +8,7 @@ if [[ "$branch" == *"release/"* ]]; then
     result=$?
     # If the build succeeded, and we're on a release branch, upload to Bintray!
     if [ "$result" == 0  ]; then
-        conan remote add origin $CONAN_UPLOAD
+        conan remote add origin "$CONAN_UPLOAD"
         # ... assuming the Bintray API key is defined.
         if [ "$CONAN_PASSWORD" ]; then
             conan user -p $CONAN_PASSWORD -r origin $CONAN_REFERENCE
