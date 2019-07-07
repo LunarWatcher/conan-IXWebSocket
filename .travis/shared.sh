@@ -1,7 +1,7 @@
 branch="$(git name-rev --name-only HEAD)"
 echo "Currently on branch $branch"
 
-if [ $branch == *"release/"* ]; then
+if [[ "$branch" == *"release/"* ]]; then
     
     conan create . LunarWatcher/stable --build missing $([ "${IX_OPTIONS}" ] && echo "${IX_OPTIONS}" || echo "")
     result = $?
