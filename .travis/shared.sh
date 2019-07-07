@@ -8,10 +8,13 @@ if [[ "$branch" == *"release/"* ]]; then
     result=$?
     # If the build succeeded, and we're on a release branch, upload to Bintray!
     if [ "$result" == 0  ]; then
+        echo "Successfully ran tests. On branch $branch - attempting upload."
         conan remote add origin "$CONAN_UPLOAD"
         # ... assuming the Bintray API key is defined.
-        if [ "$CONAN_PASSWORD" ]; then
+        if [ $CONAN_PASSWORD ]; then
+            echo "Registering user..."
             conan user -p $CONAN_PASSWORD -r origin $CONAN_REFERENCE
+            echo "Uploading now."
             conan upload -r origin --confirm "IXWebSocket/*"
         fi
     fi
