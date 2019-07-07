@@ -5,7 +5,7 @@ if [[ "$branch" == *"release/"* ]]; then
     
     conan create . LunarWatcher/stable --build missing $([ "${IX_OPTIONS}" ] && echo "${IX_OPTIONS}" || echo "")
 
-    result = $?
+    result=$?
     # If the build succeeded, and we're on a release branch, upload to Bintray!
     if [ "$result" == 0  ]; then
         conan remote add origin $CONAN_UPLOAD
