@@ -26,7 +26,9 @@ else
     docker run -v $PWD:/conan-IXWebSocket $CONAN_DOCKER_IMAGE /bin/bash -c "cd /conan-IXWebSocket; \
 conan profile new --detect default; \
 conan profile update settings.compiler.libcxx=libstdc++11 default; \
-CONAN_PASSWORD=$CONAN_PASSWORD
+CONAN_PASSWORD=$CONAN_PASSWORD; \
+CONAN_UPLOAD=$CONAN_UPLOAD; \
+CONAN_REFERENCE=$CONAN_REFERENCE; \
 ./.travis/shared.sh"
 fi
 
