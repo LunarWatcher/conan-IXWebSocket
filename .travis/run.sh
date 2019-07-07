@@ -23,10 +23,13 @@ else
         export CXX=gcc-$CONAN_GCC_VERSIONS
     fi
 
-    docker run -v $PWD:/conan-IXWebSocket $CONAN_DOCKER_IMAGE /bin/sh -c "cd /conan-IXWebSocket; \
-        conan profile new --detect default; \
-        conan profile update settings.compiler.libcxx=libstdc++11 default; \
-        ./.travis/shared.sh"
+    docker run -v $PWD:/conan-IXWebSocket $CONAN_DOCKER_IMAGE /bin/bash -c "cd /conan-IXWebSocket; \
+conan profile new --detect default; \
+conan profile update settings.compiler.libcxx=libstdc++11 default; \
+export CONAN_PASSWORD=$CONAN_PASSWORD; \
+export CONAN_UPLOAD=$CONAN_UPLOAD; \
+export CONAN_REFERENCE=$CONAN_REFERENCE; \
+./.travis/shared.sh"
 fi
 
 
