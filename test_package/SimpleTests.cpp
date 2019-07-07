@@ -43,9 +43,18 @@ int main() {
     std::cout << "Starting socket..." << std::endl;
     ix::initNetSystem(); // required for Windows
     SocketWrapper socketWrapper;
+    int counter = 0;
     while(true) {
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-        if (socketWrapper.hasReceived()) break;
+        counter++;
+        if (socketWrapper.hasReceived()) {
+            break;
+        } else if (counter >= 5) {
+            socketWrapper.close();
+            ix::uninitNetSystem(); 
+            throw "No response for 10 seconds: assuming failure";
+        }
+
         if (socketWrapper.ready()) {
             socketWrapper.send("Congrats, your local version of IXWebSocket works!");
         }
