@@ -5,6 +5,9 @@ environment:
     PYTHON_VERSION: "3.7.3"
     PYTHON_ARCH: "32"
 
+    CONAN_UPLOAD: "https://api.bintray.com/conan/oliviazoe0/conan-packages"
+    CONAN_REFERENCE: "OliviaZoe0"
+
     matrix:
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
           CONAN_VISUAL_VERSIONS: 12
