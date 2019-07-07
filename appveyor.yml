@@ -24,4 +24,4 @@ install:
     - conan user
 
 test_script:
-    - cmd.exe /c appveyor-runner.bat
+    - conan create . LunarWatcher/testing --build missing
