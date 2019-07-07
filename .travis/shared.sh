@@ -15,7 +15,7 @@ if [[ "$branch" == *"release/"* ]]; then
             echo "Registering user..."
             conan user -p $CONAN_PASSWORD -r origin $CONAN_REFERENCE
             echo "Uploading now."
-            conan upload -r origin --confirm "IXWebSocket/*"
+            conan upload -r origin --all --confirm "IXWebSocket/*"
         fi
     fi
 else 
