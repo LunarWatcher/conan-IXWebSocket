@@ -1,6 +1,9 @@
 build: false
 
 environment:
+    CONAN_PASSWORD:
+        secure: tsewHUPN/wd3fzA4K9++n1NQHn5UE3UhCf1f8Mo/KE1pN12Uu5pm/nJ6enA1FNem
+
     PYTHON: "c:\\Python37"
     PYTHON_VERSION: "3.7.3"
     PYTHON_ARCH: "32"
@@ -17,6 +20,7 @@ environment:
     matrix:
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
           CONAN_VISUAL_VERSIONS: 12
+          CONAN_ARCHS: "x86_64"
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
           CONAN_VISUAL_VERSIONS: 14
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
