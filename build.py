@@ -12,5 +12,5 @@ if __name__ == "__main__":
         dockerEntryScript += "--build missing"
     builder = ConanMultiPackager(docker_entry_script=dockerEntryScript)
 
-    builder.add_common_builds(pure_c=False)
+    builder.add_common_builds(pure_c=False, build_policy="missing")
     builder.run()
