@@ -1,7 +1,13 @@
 env:
     global:
-        - CONAN_UPLOAD: "https://api.bintray.com/conan/oliviazoe0/conan-packages"
-        - CONAN_REFERENCE: "OliviaZoe0"
+        - CONAN_REFERENCE: "IXWebSocket/5.0.0"
+        - CONAN_USERNAME: "OliviaZoe0"
+        - CONAN_LOGIN_USERNAME: "OliviaZoe0"
+        - CONAN_CHANNEL: "testing"
+        - CONAN_UPLOAD: "https://bintray.com/oliviazoe0/conan-packages"
+        - CONAN_STABLE_BRANCH_PATTERN: "release/*"
+        - CONAN_UPLOAD_ONLY_WHEN_STABLE: 1
+        - CONAN_UPLOAD_DEPENDENCIES: "all"
 
 linux: &linux
     os: linux
@@ -27,34 +33,32 @@ matrix:
       - <<: *linux
         env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/gcc8
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=conanio/gcc9
+        env: CONAN_CLANG_VERSIONS=3.9 CONAN_DOCKER_IMAGE=conanio/clang39
       - <<: *linux
-        env: CONAN_CLANG_VERSIONS=39 CONAN_DOCKER_IMAGE=conanio/clang39
+        env: CONAN_CLANG_VERSIONS=4.0 CONAN_DOCKER_IMAGE=conanio/clang40
       - <<: *linux
-        env: CONAN_CLANG_VERSIONS=40 CONAN_DOCKER_IMAGE=conanio/clang40
+        env: CONAN_CLANG_VERSIONS=5.0 CONAN_DOCKER_IMAGE=conanio/clang50 
       - <<: *linux
-        env: CONAN_CLANG_VERSIONS=50 CONAN_DOCKER_IMAGE=conanio/clang50 
+        env: CONAN_CLANG_VERSIONS=6.0 CONAN_DOCKER_IMAGE=conanio/clang60 
       - <<: *linux
-        env: CONAN_CLANG_VERSIONS=60 CONAN_DOCKER_IMAGE=conanio/clang60 
+        env: CONAN_CLANG_VERSIONS=7.0 CONAN_DOCKER_IMAGE=conanio/clang7 
       - <<: *linux
-        env: CONAN_CLANG_VERSIONS=70 CONAN_DOCKER_IMAGE=conanio/clang7 
-      - <<: *linux
-        env: CONAN_CLANG_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/clang8 
+        env: CONAN_CLANG_VERSIONS=8 CONAN_DOCKER_IMAGE=conanio/clang8 CONAN_ARCHS="x86_64" 
       - <<: *osx
         osx_image: xcode7.3
-        env: CONAN_APPLE_CLANG_VERSIONS=7.3 HOMEBREW_NO_AUTO_UPDATE=1
+        env: CONAN_APPLE_CLANG_VERSIONS=7.3
       - <<: *osx
         osx_image: xcode8.3
-        env: CONAN_APPLE_CLANG_VERSIONS=8.1 HOMEBREW_NO_AUTO_UPDATE=1
+        env: CONAN_APPLE_CLANG_VERSIONS=8.1
       - <<: *osx
         osx_image: xcode9
-        env: CONAN_APPLE_CLANG_VERSIONS=9.0 HOMEBREW_NO_AUTO_UPDATE=1
+        env: CONAN_APPLE_CLANG_VERSIONS=9.0
       - <<: *osx
         osx_image: xcode9.4
-        env: CONAN_APPLE_CLANG_VERSIONS=9.1 HOMEBREW_NO_AUTO_UPDATE=1
+        env: CONAN_APPLE_CLANG_VERSIONS=9.1
       - <<: *osx
         osx_image: xcode10
-        env: CONAN_APPLE_CLANG_VERSIONS=10.0 HOMEBREW_NO_AUTO_UPDATE=1
+        env: CONAN_APPLE_CLANG_VERSIONS=10.0
 
 
 install:
@@ -63,6 +67,5 @@ install:
 
 script:
   - chmod +x .travis/run.sh
-  - chmod +x ./.travis/shared.sh
   - ./.travis/run.sh
 

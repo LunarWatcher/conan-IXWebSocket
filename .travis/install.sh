@@ -1,4 +1,4 @@
-# Set up 
+# Setup 
 
 set -e
 set -x
@@ -17,12 +17,10 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     pyenv virtualenv 3.7.1 conan
     pyenv rehash
     pyenv activate conan
-else
-    # if Linux, use Docker.
-    docker pull $CONAN_DOCKER_IMAGE 
 fi
 
-pip install conan --upgrade
+pip install conan_package_tools > /dev/null
+pip install conan --upgrade > /dev/null
 
 # Initializes the profile
 conan user

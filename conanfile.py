@@ -75,7 +75,7 @@ class IXWebSocketConan(ConanFile):
             self.addLibrary("MBEDTLS", "mbedtls", opts, True)
             self.addLibrary("MBEDCRYPTO", "mbedtls", opts, True)
             self.addLibrary("MBEDX509", "mbedtls", opts, True)
-        cmake.configure(defs=opts, source_folder="sources", build_folder="build")
+        cmake.configure(defs=opts)
         return cmake
 
     def build(self):
