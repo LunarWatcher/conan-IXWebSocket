@@ -10,7 +10,7 @@ environment:
 
     VS150COMNTOOLS: "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Common7\\Tools\\"
 
-    CONAN_USERNAME: "OliviaZoe0"
+    CONAN_USERNAME: "LunarWatcher"
     CONAN_LOGIN_USERNAME: "OliviaZoe0"
     CONAN_CHANNEL: "testing"
     CONAN_UPLOAD: "https://api.bintray.com/conan/oliviazoe0/conan-packages"
