@@ -6,6 +6,7 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
         eval "$(pyenv init -)"
     fi
     pyenv activate conan
+    export CONAN_OPTIONS="IXWebSocket:use_mbed_tls=True"
 fi
 
 python build.py

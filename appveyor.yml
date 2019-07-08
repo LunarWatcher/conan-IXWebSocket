@@ -5,6 +5,8 @@ environment:
     PYTHON_VERSION: "3.7.3"
     PYTHON_ARCH: "32"
 
+    VS150COMNTOOLS: "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\Common7\\Tools\\"
+
     CONAN_USERNAME: "OliviaZoe0"
     CONAN_LOGIN_USERNAME: "OliviaZoe0"
     CONAN_CHANNEL: "testing"
