@@ -3,7 +3,7 @@ import os
 
 class IXWebSocketConan(ConanFile):
     name = "IXWebSocket"
-    version = "5.0.0"
+    version = "5.0.3"
     description = "WebSocket client/server"
     topics = ("conan", "IXWebSocket", "socket", "websocket")
     
