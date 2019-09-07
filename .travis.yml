@@ -1,6 +1,6 @@
 env:
     global:
-        - CONAN_REFERENCE: "IXWebSocket/5.0.0"
+        - CONAN_REFERENCE: "IXWebSocket/6.0.0"
         - CONAN_USERNAME: "LunarWatcher"
         - CONAN_LOGIN_USERNAME: "OliviaZoe0"
         - CONAN_CHANNEL: "testing"
