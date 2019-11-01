@@ -40,31 +40,36 @@ public:
 };
 
 int main() {
-    std::cout << "Starting socket..." << std::endl;
-    ix::initNetSystem(); // required for Windows
-    SocketWrapper socketWrapper;
-    int counter = 0;
-    while(true) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-        if (!socketWrapper.ready())
-            continue;
-        counter++;
-        if (socketWrapper.hasReceived()) {
-            break;
-        } else if (counter >= 5) {
-            socketWrapper.close();
-            ix::uninitNetSystem(); 
-            throw "No response for 10 seconds: assuming failure";
-        }
+    try {
+        std::cout << "Starting socket..." << std::endl;
+        ix::initNetSystem(); // required for Windows
+        SocketWrapper socketWrapper;
+        int counter = 0;
+        while(true) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+            if (!socketWrapper.ready())
+                continue;
+            counter++;
+            if (socketWrapper.hasReceived()) {
+                break;
+            } else if (counter >= 5) {
+                socketWrapper.close();
+                ix::uninitNetSystem(); 
+                throw std::string("No response for 10 seconds: assuming failure");
+            }
 
-        if (socketWrapper.ready()) {
-            socketWrapper.send("Congrats, your local version of IXWebSocket works!");
+            if (socketWrapper.ready()) {
+                socketWrapper.send("Congrats, your local version of IXWebSocket works!");
+            }
         }
+        std::cout << "Message received! Closing socket." << std::endl;
+        socketWrapper.close();
+        std::cout << "Socket disconnected." << std::endl;
+
+        ix::uninitNetSystem(); // required for Windows.
+
+    } catch (const char* ex) {
+        std::cout << ex;
+        throw;
     }
-    std::cout << "Message received! Closing socket." << std::endl;
-    socketWrapper.close();
-    std::cout << "Socket disconnected." << std::endl;
-
-    ix::uninitNetSystem(); // required for Windows.
 }
-
