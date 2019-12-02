@@ -5,6 +5,7 @@
 #include <chrono>
 #include <thread>
 #include <ixwebsocket/IXNetSystem.h>
+#include <ixwebsocket/IXSocketTLSOptions.h>
 
 class SocketWrapper {
 private:
@@ -15,6 +16,7 @@ public:
         webSocket.setUrl(std::string("ws://echo.websocket.org"));
         webSocket.setOnMessageCallback(
             [this](const ix::WebSocketMessagePtr& message) {
+                std::cout << "Something received" << std::endl;
                 if (message->type == ix::WebSocketMessageType::Open) {
                     std::cout << "Connected\n";
                     //webSocket.send(std::string("Congrats, your local version of IXWebSocket works!"));
@@ -27,6 +29,7 @@ public:
                     std::cout << "ERROR:" << message->errorInfo.reason;
                 } 
             });
+
         webSocket.start();
 
     }
@@ -54,11 +57,13 @@ int main() {
                 break;
             } else if (counter >= 5) {
                 socketWrapper.close();
-                ix::uninitNetSystem(); 
+                ix::uninitNetSystem();
+                std::cout << "No response for 10 seconds; assuming failure" << std::endl;
                 throw std::string("No response for 10 seconds: assuming failure");
             }
 
             if (socketWrapper.ready()) {
+                std::cout << "Sent message." << std::endl;
                 socketWrapper.send("Congrats, your local version of IXWebSocket works!");
             }
         }
