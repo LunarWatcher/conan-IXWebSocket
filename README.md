@@ -1,3 +1,9 @@
+# Archive notice 
+
+This recipe has been moved to [conan-center-index](//github.com/conan-io/conan-center-index) (initially through pull request 677). This project exists to support the legacy bintray remote, by keeping transparancy regarding the backing code. The bintray remote, as well as this repo, will no longer receive updates. While the older versions can still be used, moving to the Conan Center package is _highly_ recommended.
+
+# Info 
+
 [Conan](//conan.io) package for [machinezone/IXWebSocket](https://github.com/machinezone/IXWebSocket).
 
 
